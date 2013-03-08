@@ -1,0 +1,33 @@
+<h1>Listing recipes</h1>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Ingredients</th>
+      <th>Username</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @otherusers.each do |user|%>
+    <% user.recipes.each do |recipe| %>
+      <tr>
+        <td><%= recipe.name %></td>
+        <td><%= recipe.ingredients %></td>
+        <td><%= user.email%></td>
+        <td><%= link_to 'Show', recipe %></td>
+        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+        <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <%end%>
+  </table>
+
+<br />
+
+<%= link_to 'New Recipe', new_recipe_path %>
+<%=link_to 'Return to dashboard', dashboard_path%>
+
+
+<%#= render 'testuser' %>

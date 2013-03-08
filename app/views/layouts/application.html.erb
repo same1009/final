@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Final</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<div style='border: 5px solid red'>
+		<%if flash[:notice]%>
+			<p class='notice'> <%=flash[:notice].html_safe%></p>
+		<%end%>
+	</div >
+	<div style='border: 5px solid green'>
+		<%if flash[:alert]%>
+			<p class='alert'> <%=flash[:alert].html_safe%></p>
+		<%end%>
+	</div>
+	<div style='border: 5px solid blue'>
+		<%if flash[:error]%>
+			<p class='error'> <%=flash[:error].html_safe%></p>
+		<%end%>
+	</div>
+</br>
+<% if user_signed_in? %>
+  <li>
+  <h2>Welcome <%=current_user.email%></h2>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% end %>
+</br>
+
+<!-- </br><%=params[:recipe]%> -->
+<%= yield %>
+
+</body>
+</html>
