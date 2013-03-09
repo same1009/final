@@ -1,5 +1,8 @@
 <h1>New review</h1>
 
+<%#=@review%>
+
 <%= render 'form' %>
 
 <%= link_to 'Back', reviews_path %>
+<%= link_to 'real back', recipe_path(@review.recipe_id)%>

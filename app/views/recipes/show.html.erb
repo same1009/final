@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+
+<p>Recipeid is <%=@recipe.id%></p>
 <p>
   <b>Name:</b>
   <%= @recipe.name %>
@@ -10,6 +12,39 @@
   <%= @recipe.ingredients %>
 </p>
 
+<hr>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+<h3>Reviews</h3>
+<%@recipe.reviews.each do |review|%>
+	<%=review.id%>
+	<p>Comments: <%=review.comments%></p>
+	<p> Rating: <%=review.rating%></p>
+	<p> User Email: <%=User.find(review.user_id).email%></p>
+	<%if review.user_id==current_user.id %>
+		<%= link_to 'Edit Review', edit_review_path(:review_id=>review.id)%>
+	<%end%>
+	<hr>
+<%end%>
+
+</br>
+<%#cookies.delete :recipe%>
+<%#session.delete :recipe%>
+
+
+<%if @recipe.user.id==current_user.id%>
+	<%= link_to 'Edit', edit_recipe_path(@recipe) %>
+	<%=link_to 'Back to my recipes' ,recipes_path %>
+<%else%>
+		<%= link_to 'Make  a review',new_review_path%>
+		<%= link_to 'Back to recipes to review', search_path %>
+
+	<%#= link_to 'Make  a review',
+	{:controller=> 'reviews', :action=> 'create2', :recipe_id=>@recipe.id}%>
+<%end%>
+
+<%=params[:id]%>
+
+
+</br>
+
+

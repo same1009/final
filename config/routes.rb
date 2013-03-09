@@ -1,16 +1,27 @@
 Final::Application.routes.draw do
   get "dashboard/index", :as=>:dashboard
-
+  # get "recipes/review"
   get "home/index"
 
-  resources :reviews
+  get 'reviews' => 'reviews#index', :as=> 'reviews'
+  # post 'reviews'=> 'reviews#create'
+  post 'recipes/:id/newreview'=> 'reviews#create'
+  #get 'reviews/new/:id'=> 'reviews#new', :as => 'new_review'
+  get 'recipes/:id/newreview'=> 'reviews#new', :as => 'new_review'
+  get 'recipes/:id/review/:review_id/edit/' =>'reviews#edit', :as=>'edit_review'
+  # get 'reviews/:id/edit'=>'reviews#edit', :as=> 'edit_review'
+  get 'recipes/:id/reviews/:review_id' =>'reviews#show', :as=> 'review'
+  put 'recipes/:id/review/:review_id/edit/' =>'reviews#update'
+  delete 'reviews/:id' => 'reviews#destroy'
+  # resources :reviews
 
-  get "recipes/search" =>'recipes#lookingforrecipes', :as => :search
+  get 'recipes/test'=> 'recipes#test', :as=>'recipes_test'
+  # get 'reviews/new/:id'=>"reviews#new", :as => 'new_new_review'
 
+  get "recipes/search" =>'recipes#lookingforrecipes', :as => 'search'
   devise_for :users
-
   resources :recipes
-
+  get 'blah', :controller=>'reviews', :action=>'create2'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

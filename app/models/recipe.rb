@@ -4,7 +4,8 @@ class Recipe < ActiveRecord::Base
   validates :ingredients, :presence => true
   validates :owner, :presence =>true
 
+  belongs_to :user
   has_many :reviews, :dependent=>:destroy
   accepts_nested_attributes_for :reviews
-  belongs_to :user
+
 end

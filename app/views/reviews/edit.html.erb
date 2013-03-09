@@ -1,5 +1,14 @@
-<h1>Editing review</h1>
 
+<p>review edit.html</p>
+<h1>Recipe</h1>
+<p>
+Name: <%= @review.recipe.name%>
+</br>
+Ingredients: <%= @review.recipe.ingredients%>
+</br>
+Username: <%=User.find(@review.recipe.user_id).email%>
+</p>
+<h1>Editing review</h1>
 <%= render 'form' %>
 
 <%= link_to 'Show', @review %> |

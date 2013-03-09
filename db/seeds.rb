@@ -9,17 +9,36 @@
 
 require 'Faker'
 
+# @recipe=Recipe.first
+
+# @review=@recipe.reviews.new(:comments=>'mutiuple reviews', :rating=>4, :user_id=> @user.id)
+# @review.save
+
+# @user=User.first
+
+# @recipe=@user.recipes.new(:name=>'user1', :ingredients=>'user1', :owner=>true)
+
+# @recipe.save
+
+# @review=@recipe.reviews.new(:comments=>'through recipe 1', :rating=>4, :user_id=> @user.id)
+
+# @review.save
+
+
+# @review2=@user.reviews.new(:comments=>'through user 1', :rating=>1, :recipe_id=>@recipe.id)
+# @review2.save
+
 
  
- User.where("id<>"+1.to_s).each do |user|
+ # User.where("id<>"+1.to_s).each do |user|
  	
- 	user.recipes.each do|recipe|
+ # 	user.recipes.each do|recipe|
 
  		
 
- 	end
+ # 	end
  	
- end
+ # end
 
 # Recipe.delete_all
 # Review.delete_all

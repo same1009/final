@@ -94,4 +94,16 @@ class RecipesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def test
+
+    @test=params[:test]
+    render '_testuser.html.erb'
+
+
+  end
+
+
+
+
 end

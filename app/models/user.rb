@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 
   has_many :recipes, :dependent => :destroy
   accepts_nested_attributes_for :recipes
-  has_many :review, :through=> :recipes, :dependent=>:destroy
+  #has_many :reviews, :through=> :recipes, :dependent=>:destroy
+  has_many :reviews, :dependent=>:destroy
+
 
 end

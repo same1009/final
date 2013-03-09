@@ -1,5 +1,7 @@
-<h1>Listing recipes</h1>
-
+<h1><%=current_user.email%>'s list of recipes</h1>
+<%if @recipes.empty?%>
+    You have no recipes, please create a recipe below!
+<%else%>
   <table>
     <tr>
       <th>Name</th>
@@ -9,9 +11,9 @@
       <th></th>
     </tr>
 
+
   <% @recipes.each do |recipe| %>
     <tr>
-      <%=recipe.class%>
       <td><%= recipe.name %></td>
       <td><%= recipe.ingredients %></td>
       <td><%= link_to 'Show', recipe %></td>
@@ -21,10 +23,12 @@
   <% end %>
   </table>
 
+<%end%>
+
 <br />
 
 <%= link_to 'New Recipe', new_recipe_path %>
-<%=link_to 'Return to dashboard', dashboard_path%>
+<%#=link_to 'Return to dashboard', dashboard_path%>
 
 
 <%#= render 'testuser' %>

@@ -1,9 +1,9 @@
-<h1>Listing reviews</h1>
+<h1>My reviews of other recipes</h1>
 
 <table>
   <tr>
     <th>User</th>
-    <th>Receipe</th>
+    <th>Recipe</th>
     <th>Comments</th>
     <th>Rating</th>
     <th></th>
@@ -11,19 +11,20 @@
     <th></th>
   </tr>
 
-<% @reviews.each do |review| %>
+<% @myreviews.each do |review| %>
   <tr>
     <td><%= review.user_id %></td>
-    <td><%= review.receipe_id %></td>
+    <td><%= review.recipe_id %></td>
     <td><%= review.comments %></td>
     <td><%= review.rating %></td>
-    <td><%= link_to 'Show', review %></td>
-    <td><%= link_to 'Edit', edit_review_path(review) %></td>
-    <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%#= link_to 'Show', review %></td>
+    <td><%#= link_to 'Edit', edit_review_path(review) %></td>
+    <td><%#= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Review', new_review_path %>
+
+<%#= link_to 'New Review', new_review_path %>
