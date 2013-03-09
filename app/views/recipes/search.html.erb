@@ -4,7 +4,7 @@
     <tr>
       <th>Name</th>
       <th>Ingredients</th>
-      <th>Username</th>
+      <th>Recipe Owner</th>
       <th></th>
       <th>Already have a review for this?</th>
       <th></th>
@@ -16,8 +16,16 @@
         <td><%= recipe.name %></td>
         <td><%= recipe.ingredients %></td>
         <td><%= user.email%></td>
-        <td><%= link_to 'Show', recipe %></td>
-        <td><%#=recipe.reviews.where('user_id='+current_user.id.to_s)%>
+        <td><%= link_to 'Show recipe', recipe %></td>
+
+        <td> 
+          <%if recipe.reviews.where('user_id='+current_user.id.to_s).empty?%>
+            <%=link_to 'Review this recipe', new_review_path(:id=>recipe.id)%>
+          <%else%>
+            <%=link_to 'Show my review',review_path(:id=>recipe.id,:review_id=>recipe.reviews.where('user_id='+current_user.id.to_s).first.id)%>
+          <%end%>
+
+          <%#=recipe.reviews.where('user_id='+current_user.id.to_s)%>
 
           <%#= link_to 'Edit', edit_recipe_path(recipe) %>
 

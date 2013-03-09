@@ -1,3 +1,14 @@
+
+<p>review new.html</p>
+<h1>Recipe</h1>
+<p>
+Name: <%= @review.recipe.name%>
+</br>
+Ingredients: <%= @review.recipe.ingredients%>
+</br>
+Username: <%=User.find(@review.recipe.user_id).email%>
+</p>
+
 <h1>New review</h1>
 
 <%#=@review%>

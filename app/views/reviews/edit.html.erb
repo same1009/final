@@ -6,10 +6,12 @@ Name: <%= @review.recipe.name%>
 </br>
 Ingredients: <%= @review.recipe.ingredients%>
 </br>
-Username: <%=User.find(@review.recipe.user_id).email%>
+Recipe Owner: <%=User.find(@review.recipe.user_id).email%>
+</br>
+Recipe ID: <%=@review.recipe_id%>
 </p>
 <h1>Editing review</h1>
-<%= render 'form' %>
+<%= render 'formupdate' %>
 
 <%= link_to 'Show', @review %> |
 <%= link_to 'Back', reviews_path %>

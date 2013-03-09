@@ -2,8 +2,11 @@
 
 <table>
   <tr>
-    <th>User</th>
-    <th>Recipe</th>
+    <th>Owner</th>
+    <th>Me</th>
+    <th>Recipeid</th>
+    <th>recipe name</th>
+    <th>Ingredients</th>
     <th>Comments</th>
     <th>Rating</th>
     <th></th>
@@ -13,11 +16,16 @@
 
 <% @myreviews.each do |review| %>
   <tr>
-    <td><%= review.user_id %></td>
+    <td><%= review.recipe.user.email%></td>
+    <td><%= User.find(review.user_id).email%></td>
     <td><%= review.recipe_id %></td>
+    <td><%= review.recipe.name%></td>
+    <td><%= review.recipe.ingredients%></td>
     <td><%= review.comments %></td>
     <td><%= review.rating %></td>
-    <td><%#= link_to 'Show', review %></td>
+    <td><%= link_to 'Go to recipe', review.recipe%></td>
+    <td><%= link_to 'Edit this Review', edit_review_path(:review_id=>review.id, :id=>review.recipe_id)%></td>
+    <!-- <td><%#= link_to 'Show', review %></td> -->
     <td><%#= link_to 'Edit', edit_review_path(review) %></td>
     <td><%#= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
