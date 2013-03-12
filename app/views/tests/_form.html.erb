@@ -1,0 +1,58 @@
+<%= form_for(@test) do |f| %>
+  <% if @test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@test.errors.count, "error") %> prohibited this test from being saved:</h2>
+
+      <ul>
+      <% @test.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :a_binary %><br />
+    <%= f.text_field :a_binary %>
+  </div>
+  <div class="field">
+    <%= f.label :b_boolean %><br />
+    <%= f.check_box :b_boolean %>
+  </div>
+  <div class="field">
+    <%= f.label :c_date %><br />
+    <%= f.date_select :c_date %>
+  </div>
+  <div class="field">
+    <%= f.label :d_datetime %><br />
+    <%= f.datetime_select :d_datetime %>
+  </div>
+  <div class="field">
+    <%= f.label :e_decimal %><br />
+    <%= f.text_field :e_decimal %>
+  </div>
+  <div class="field">
+    <%= f.label :f_float %><br />
+    <%= f.text_field :f_float %>
+  </div>
+  <div class="field">
+    <%= f.label :g_integer %><br />
+    <%#= f.number_field :g_integer %>
+    <%= f.select :g_integer ,[[0,11],[9,22],[8,33]]%>
+  </div>
+  <div class="field">
+    <%= f.label :h_string %><br />
+    <%= f.text_field :h_string %>
+  </div>
+  <div class="field">
+    <%= f.label :i_text %><br />
+    <%= f.text_area :i_text %>
+  </div>
+  <div class="field">
+    <%= f.label :j_time %><br />
+    <%= f.time_select :j_time,{:minute_step=>5, :prompt => {:hour => 'Choose hours', :minute => 'Choose minutes'}}%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

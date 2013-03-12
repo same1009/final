@@ -1,4 +1,10 @@
 Final::Application.routes.draw do
+
+  resources :tests
+
+
+  #get 'reviews/:review_id/delete' => 'reviews#destroy_from_review_page', :as=>'delete_review_from_review_page'
+  get 'recipes/:id/review/:review_id/delete'=>'reviews#destroy',:as=> 'destroy_review'
   get "dashboard/index", :as=>:dashboard
   # get "recipes/review"
   get "home/index"
@@ -10,18 +16,24 @@ Final::Application.routes.draw do
   get 'recipes/:id/newreview'=> 'reviews#new', :as => 'new_review'
   get 'recipes/:id/review/:review_id/edit/' =>'reviews#edit', :as=>'edit_review'
   # get 'reviews/:id/edit'=>'reviews#edit', :as=> 'edit_review'
-  get 'recipes/:id/reviews/:review_id' =>'reviews#show', :as=> 'review'
+  get 'recipes/:id/review/:review_id' =>'reviews#show', :as=> 'review'
   put 'recipes/:id/review/:review_id/edit/' =>'reviews#update'
-  delete 'reviews/:id' => 'reviews#destroy'
+  #delete 'recipes/:id/review/:review_id' => 'reviews#destroy', :as=>'delete_review'
+
+  #get 'reviews/:review_id/delete' => 'reviews#destroy_from_review_page', :as=>'delete_review_from_review_page'
+  #get 'r/delete' => 'reviews#destroy_from_review_page', :as=>'delete_review_from_review_page'
+  #delete 'recipes/:id/review/:review_id/delete' => 'reviews#destroy', :as=>'delete_review'
   # resources :reviews
 
   get 'recipes/test'=> 'recipes#test', :as=>'recipes_test'
   # get 'reviews/new/:id'=>"reviews#new", :as => 'new_new_review'
 
   get "recipes/search" =>'recipes#lookingforrecipes', :as => 'search'
-  devise_for :users
+ 
   resources :recipes
   get 'blah', :controller=>'reviews', :action=>'create2'
+  devise_for :users
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

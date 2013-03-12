@@ -10,6 +10,12 @@ this is test<%#=@test%>
 </br>
 	<%#=current_user.email%>
 </br>
+<%=@temp%>
+<%=@review%>
+<% if params[:id].nil?%>
+	<p>params id is nil</p>
+
+<%end%>
 	<%#=current_user.id%>
 
 </br>

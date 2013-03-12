@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>A binary:</b>
+  <%= @test.a_binary %>
+</p>
+
+<p>
+  <b>B boolean:</b>
+  <%= @test.b_boolean %>
+</p>
+
+<p>
+  <b>C date:</b>
+  <%= @test.c_date %>
+</p>
+
+<p>
+  <b>D datetime:</b>
+  <%= @test.d_datetime %>
+</p>
+
+<p>
+  <b>E decimal:</b>
+  <%= @test.e_decimal %>
+</p>
+
+<p>
+  <b>F float:</b>
+  <%= @test.f_float %>
+</p>
+
+<p>
+  <b>G integer:</b>
+  <%= @test.g_integer %>
+</p>
+
+<p>
+  <b>H string:</b>
+  <%= @test.h_string %>
+</p>
+
+<p>
+  <b>I text:</b>
+  <%= @test.i_text %>
+</p>
+
+<p>
+  <b>J time:</b>
+  <%= @test.j_time %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_path(@test) %> |
+<%= link_to 'Back', tests_path %>

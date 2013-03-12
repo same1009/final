@@ -106,13 +106,73 @@ class ReviewsController < ApplicationController
 
   # DELETE /reviews/1
   # DELETE /reviews/1.json
-  def destroy
-    @review = Review.find(params[:id])
-    @review.destroy
+  def destroy_from_recipe_page
+    @review = Review.find(params[:review_id])
+    
+    #@temp='from ths destroy from recipe method'
+    #@review = Review.find(params[:id])
+    #@review.destroy
 
     respond_to do |format|
-      format.html { redirect_to reviews_url }
+       #format.html {render 'recipes/_testuser.html.erb'}
+      #format.html { redirect_to recipe_path() reviews_url }
+      #format.html { redirect_to reviews_url }
       format.json { head :no_content }
     end
   end
+
+
+
+  def destroy_from_review_page
+    @temp='from ths destroy from review method'
+    @review = Review.find(params[:review_id])
+    #@id=@review.recipe.id
+    #@review = Review.find(params[:id])
+    @review.destroy
+
+    respond_to do |format|
+      #format.html {render 'recipes/_testuser.html.erb'}
+      format.html { redirect_to reviews_path }
+      #format.html { redirect_to reviews_url }
+      format.json { head :no_content }
+    end
+  end
+
+    def delete
+    @review = Review.find(params[:review_id])
+    @temp='from the delete  method'
+    #@review = Review.find(params[:id])
+    #@review.destroy
+
+    respond_to do |format|
+       format.html {render 'recipes/_testuser.html.erb'}
+      #format.html { redirect_to reviews_url }
+      #format.html { redirect_to reviews_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def destroy
+    @review = Review.find(params[:review_id])
+    @temp='from the delete  method'
+    #@review = Review.find(params[:id])
+    @review.destroy
+
+    respond_to do |format|
+
+      if (params[:id].nil?)
+        format.html { redirect_to reviews_path}
+      else
+        format.html { redirect_to recipe_path}
+      end
+       #format.html {render 'recipes/_testuser.html.erb'}
+      #format.html { redirect_to reviews_url }
+      #format.html { redirect_to reviews_url }
+      format.json { head :no_content }
+    end
+  end
+
+
+
+
 end

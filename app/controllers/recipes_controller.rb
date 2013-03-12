@@ -13,6 +13,7 @@ class RecipesController < ApplicationController
   end
 
   def lookingforrecipes
+    @allrecipes=Recipe.all
 
     @otherusers=User.where("id<>"+current_user.id.to_s)
 

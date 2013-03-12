@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  a_binary: 
+  b_boolean: false
+  c_date: 2013-03-10
+  d_datetime: 2013-03-10 01:56:22
+  e_decimal: 9.99
+  f_float: 1.5
+  g_integer: 1
+  h_string: MyString
+  i_text: MyText
+  j_time: 2013-03-10 01:56:22
+
+two:
+  a_binary: 
+  b_boolean: false
+  c_date: 2013-03-10
+  d_datetime: 2013-03-10 01:56:22
+  e_decimal: 9.99
+  f_float: 1.5
+  g_integer: 1
+  h_string: MyString
+  i_text: MyText
+  j_time: 2013-03-10 01:56:22
