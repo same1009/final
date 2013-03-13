@@ -6,6 +6,8 @@ class RecipesController < ApplicationController
   def index
     @recipes = User.find(current_user.id).recipes
 
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @recipes }
@@ -13,7 +15,7 @@ class RecipesController < ApplicationController
   end
 
   def lookingforrecipes
-    @allrecipes=Recipe.all
+    @myrecipes=User.find(current_user.id).recipes
 
     @otherusers=User.where("id<>"+current_user.id.to_s)
 
@@ -100,6 +102,27 @@ class RecipesController < ApplicationController
 
     @test=params[:test]
     render '_testuser.html.erb'
+
+
+  end
+
+  def searchforrecipes
+    #@temp=params[:searchitem]
+    if(params[:searchrecipe]!=nil)
+      @allrecipes=Recipe.where('name like?','%'+params[:searchrecipe].to_s+'%')
+    else
+      @allrecipes=Recipe.where('ingredients like?','%'+params[:searchingredients].to_s+'%')
+    end
+    #ecipe.where('name like ?', '%bur%')
+    render 'search'
+    # @allrecipes=Recipe.all
+
+    # @otherusers=User.where("id<>"+current_user.id.to_s)
+
+    # respond_to do |format|
+    #   format.html {render 'search'}
+    #   format.json { render json: @recipes }
+    # end
 
 
   end

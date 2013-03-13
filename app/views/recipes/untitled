@@ -1,0 +1,70 @@
+
+<!-- <h1>Recipes already reviewed</h1>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Ingredients</th>
+      <th>Recipe Owner</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @otherusers.each do |user|%>
+    <% user.recipes.each do |recipe| %>
+      <%if recipe.reviews.where('user_id='+current_user.id.to_s).count!=0%>
+        <tr>
+          <td><%= recipe.name %></td>
+          <td><%= recipe.ingredients %></td>
+          <td><%= user.email%></td>
+          <td><%= link_to 'Show recipe', recipe %></td>
+          <td> 
+            <%#if recipe.reviews.where('user_id='+current_user.id.to_s).empty?%>
+              <%#=link_to 'Review this recipe', new_review_path(:id=>recipe.id)%>
+            <%#else%>
+              <%=link_to 'Show my review',review_path(:id=>recipe.id,:review_id=>recipe.reviews.where('user_id='+current_user.id.to_s).first.id)%>
+            <%#end%>
+          </td>
+          <td><%#= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <%end%>
+    <% end %>
+  <%end%>
+  </table>
+
+</br>
+
+<h1>Recipes to review</h1>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Ingredients</th>
+      <th>Recipe Owner</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @otherusers.each do |user|%>
+    <% user.recipes.each do |recipe| %>
+      <%if recipe.reviews.where('user_id='+current_user.id.to_s).empty?%>
+        <tr>
+          <td><%= recipe.name %></td>
+          <td><%= recipe.ingredients %></td>
+          <td><%= user.email%></td>
+          <td><%= link_to 'Show recipe', recipe %></td>
+          <td> 
+            <%#if recipe.reviews.where('user_id='+current_user.id.to_s).empty?%>
+              <%=link_to 'Review this recipe', new_review_path(:id=>recipe.id)%>
+            <%#else%>
+              <%#=link_to 'Show my review',review_path(:id=>recipe.id,:review_id=>recipe.reviews.where('user_id='+current_user.id.to_s).first.id)%>
+            <%#end%>
+          </td>
+          <td><%#= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <%end%>
+    <%end%>
+  <%end%>
+  </table> -->

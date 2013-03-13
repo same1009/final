@@ -18,8 +18,10 @@
 </p>
 
 <p>
-  <b>Rating:</b>
-  <%= @review.rating %>
+	<b>Rating:</b>
+	<%@review.rating.times do |i|%>
+			<%=image_tag("star_rating.jpeg",:size => "20x20")%>
+	<%end%>
 </p>
 
 

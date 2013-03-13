@@ -15,6 +15,18 @@
   <b>Ingredients:</b>
   <%= @recipe.ingredients %>
 </p>
+<p>
+  <b>Directions:</b>
+  <%= @recipe.directions %>
+</p>
+<p>
+  <b>Average Rating:</b>
+  <%= @recipe.reviews.average(:rating).to_f%>
+</p>
+
+
+
+
 
 <hr>
 
@@ -23,7 +35,11 @@
 	<p> Review id: <%=review.id%></p>
 	<p> Comments: <%=review.comments%></p>
 	<p> Review by: <%=User.find(review.user_id).email%></p>
-	<p> Rating: <%=review.rating%></p>
+	<p> Rating: 
+		<%review.rating.times do |i|%>
+			<%=image_tag("star_rating.jpeg",:size => "20x20")%>
+		<%end%>
+	</p>
 	<%if review.user_id==current_user.id %>
 		<%= link_to 'Show Review', review_path(:review_id=>review.id)%>
 		<%= @counter=1%>

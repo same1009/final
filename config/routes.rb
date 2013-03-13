@@ -2,7 +2,7 @@ Final::Application.routes.draw do
 
   resources :tests
 
-
+  get 'recipes/search/test' => 'recipes#searchforrecipes', :as=>'searchforrecipes'
   #get 'reviews/:review_id/delete' => 'reviews#destroy_from_review_page', :as=>'delete_review_from_review_page'
   get 'recipes/:id/review/:review_id/delete'=>'reviews#destroy',:as=> 'destroy_review'
   get "dashboard/index", :as=>:dashboard

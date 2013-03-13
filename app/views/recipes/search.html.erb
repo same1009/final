@@ -1,9 +1,29 @@
 
 
+<%= form_tag("/recipes/search/test", :method => "get") do %>
+  <%= label_tag(:searchrecipe, "Search By Name:") %>
+  <%= text_field_tag(:searchrecipe) %>
+  <%= submit_tag("Search") %>
+<% end %>
 
-<h1>Recipes</h1>
+<%= form_tag("/recipes/search/test", :method => "get") do %>
+  <%= label_tag(:searchingredients, "Search By Ingredients:") %>
+  <%= text_field_tag(:searchingredients) %>
+  <%= submit_tag("Search") %>
+<% end %>
 
-  <%@allrecipes.each do |recipe|%>
+<%= form_tag("/recipes/search/test", :method => "get") do %>
+  <%= label_tag(:searchrating, "Search By Average Rating:") %>
+  <%= text_field_tag(:searchrating) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+<%if params[:searchrecipe].nil? and params[:searchingredients].nil? and params[:searchrating].nil?=%>
+  <h1>My Recipes</h1>
+
+  <%if @myrecipes !=nil%>
+    <%@myrecipes.each do |recipe|%>
 
       <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>
         <%#if recipe.reviews.where('user_id='+current_user.id.to_s).empty? %>
@@ -13,79 +33,81 @@
         <%#end%>
         </br>
         Submitted by: <%=recipe.user.email%></br>
-        Ingredients: <%=recipe.ingredients%></p>
+        Ingredients: <%=recipe.ingredients%></br>
+        Directions: <%=recipe.directions%> </br>
+        Average Rating: <%= recipe.reviews.average(:rating).to_f%></p>
+      </hr>
+    <%end%>
+  <%end%>
+
+  <h1>Other User's Recipes</h1>
+
+  <%if @otherusers!=nil%>
+
+    <%@otherusers.each do |user|%>
+
+    <%if user.recipes !=nil%>
+
+      <%user.recipes.each do |recipe|%>
+
+        <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>
+          <%#if recipe.reviews.where('user_id='+current_user.id.to_s).empty? %>
+            <%#=link_to 'Review this recipe', new_review_path(:id=>recipe.id)%>
+          <%#else%>
+            <%#=link_to 'Show my review',review_path(:id=>recipe.id,:review_id=>recipe.reviews.where('user_id='+current_user.id.to_s).first.id)%>
+          <%#end%>
+          </br>
+          Submitted by: <%=recipe.user.email%></br>
+          Ingredients: <%=recipe.ingredients%></br>
+          Directions: <%=recipe.directions%> </br>
+          Average Rating: <%= recipe.reviews.average(:rating).to_f%></p>
+        </hr>
+      <%end%>
+    <%end%>
+    <%end%>
+  <%end%>
+
+<%else%>
+  <h1>Your Search Results for "
+    <%if params[:searchrecipe].nil?%>
+      <%=params[:searchingredidents].to_s%>
+    <%else%>
+      <%=params[:searchrecipe].to_s%>
+    <%end%> "
+  </h1>
+
+  <%@allrecipes.each do |recipe|%>
+      <%if params[:searchrating].nil?%>
+        <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>
+          <%#if recipe.reviews.where('user_id='+current_user.id.to_s).empty? %>
+            <%#=link_to 'Review this recipe', new_review_path(:id=>recipe.id)%>
+          <%#else%>
+            <%#=link_to 'Show my review',review_path(:id=>recipe.id,:review_id=>recipe.reviews.where('user_id='+current_user.id.to_s).first.id)%>
+          <%#end%>
+          </br>
+          Submitted by: <%=recipe.user.email%></br>
+          Ingredients: <%=recipe.ingredients%></br>
+          Directions: <%=recipe.directions%> </p>
+      <%else%>
+        <%if recipe.reviews.average(:rating).to_f >= params[:searchrating].to_f%>
+             <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>
+          </br>
+          Submitted by: <%=recipe.user.email%></br>
+          Ingredients: <%=recipe.ingredients%></br>
+          Directions: <%=recipe.directions%> </br>
+          Average Rating: <%= recipe.reviews.average(:rating).to_f%></p>
+
+        <%end%>
+      <%end%>
     </hr>
   <%end%>
 
 
 
 
-<!-- <h1>Recipes already reviewed</h1>
 
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Ingredients</th>
-      <th>Recipe Owner</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+<%end%>
 
-  <% @otherusers.each do |user|%>
-    <% user.recipes.each do |recipe| %>
-      <%if recipe.reviews.where('user_id='+current_user.id.to_s).count!=0%>
-        <tr>
-          <td><%= recipe.name %></td>
-          <td><%= recipe.ingredients %></td>
-          <td><%= user.email%></td>
-          <td><%= link_to 'Show recipe', recipe %></td>
-          <td> 
-            <%#if recipe.reviews.where('user_id='+current_user.id.to_s).empty?%>
-              <%#=link_to 'Review this recipe', new_review_path(:id=>recipe.id)%>
-            <%#else%>
-              <%=link_to 'Show my review',review_path(:id=>recipe.id,:review_id=>recipe.reviews.where('user_id='+current_user.id.to_s).first.id)%>
-            <%#end%>
-          </td>
-          <td><%#= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <%end%>
-    <% end %>
-  <%end%>
-  </table>
 
-</br>
 
-<h1>Recipes to review</h1>
 
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Ingredients</th>
-      <th>Recipe Owner</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-
-  <% @otherusers.each do |user|%>
-    <% user.recipes.each do |recipe| %>
-      <%if recipe.reviews.where('user_id='+current_user.id.to_s).empty?%>
-        <tr>
-          <td><%= recipe.name %></td>
-          <td><%= recipe.ingredients %></td>
-          <td><%= user.email%></td>
-          <td><%= link_to 'Show recipe', recipe %></td>
-          <td> 
-            <%#if recipe.reviews.where('user_id='+current_user.id.to_s).empty?%>
-              <%=link_to 'Review this recipe', new_review_path(:id=>recipe.id)%>
-            <%#else%>
-              <%#=link_to 'Show my review',review_path(:id=>recipe.id,:review_id=>recipe.reviews.where('user_id='+current_user.id.to_s).first.id)%>
-            <%#end%>
-          </td>
-          <td><%#= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <%end%>
-    <%end%>
-  <%end%>
-  </table> -->
