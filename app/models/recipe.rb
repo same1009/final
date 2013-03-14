@@ -9,7 +9,9 @@ class Recipe < ActiveRecord::Base
   has_many :reviews, :dependent=>:destroy
   accepts_nested_attributes_for :reviews
 
-  def calavgrating
+  def extract
+
+  	
 
   end
 

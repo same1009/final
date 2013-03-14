@@ -1,22 +1,30 @@
 
 
-<%= form_tag("/recipes/search/test", :method => "get") do %>
-  <%= label_tag(:searchrecipe, "Search By Name:") %>
-  <%= text_field_tag(:searchrecipe) %>
-  <%= submit_tag("Search") %>
-<% end %>
 
-<%= form_tag("/recipes/search/test", :method => "get") do %>
-  <%= label_tag(:searchingredients, "Search By Ingredients:") %>
-  <%= text_field_tag(:searchingredients) %>
-  <%= submit_tag("Search") %>
-<% end %>
+<form action="<%= searchforrecipes_path %>" method="get" >
+   <%= label_tag(:searchrecipe, "Search By Name:") %>
+  <%= text_field_tag(:searchrecipe,params[:searchrecipe]) %>
+  <%= submit_tag "Search", :name => nil%>
+</form> 
 
-<%= form_tag("/recipes/search/test", :method => "get") do %>
-  <%= label_tag(:searchrating, "Search By Average Rating:") %>
-  <%= text_field_tag(:searchrating) %>
-  <%= submit_tag("Search") %>
-<% end %>
+
+<form action="<%= searchforrecipes_path %>" method="get" >
+   <%= label_tag(:searchingredients, "Search by Ingredients:") %>
+  <%= text_field_tag(:searchingredients,params[:searchingredients]) %>
+  <%= submit_tag "Search", :name => nil%>
+</form> 
+
+<%#= form_tag("/recipes/search/test", :method => "get") do %>
+  <%#= label_tag(:searchrating, "Search By Average Rating:") %>
+  <%#= text_field_tag(:searchrating, params[:searchrating]) %>
+  <%#= submit_tag("Search", :name=>nil) %>
+<%# end %>
+
+<form action="<%= searchforrecipes_path %>" method="get" >
+   <%= label_tag(:searchrating, "Search by Rating:") %>
+  <%= text_field_tag(:searchrating,params[:searchrating]) %>
+  <%= submit_tag "Search", :name => nil%>
+</form> 
 
 
 <%if params[:searchrecipe].nil? and params[:searchingredients].nil? and params[:searchrating].nil?=%>
