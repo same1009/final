@@ -1,5 +1,4 @@
 
-<p>review new.html</p>
 <h1>Recipe</h1>
 <p>
 Name: <%= @review.recipe.name%>
@@ -8,6 +7,15 @@ Ingredients: <%= @review.recipe.ingredients%>
 </br>
 Username: <%=User.find(@review.recipe.user_id).email%>
 </p>
+<p>
+  <b>Picture:</b></br>
+      <% if @review.recipe.avatar.file? %>
+          <%=image_tag @review.recipe.avatar, :height=>'15%',:width=>'15%'%>
+        <% else %>
+            No Picture available!
+        <% end %>
+</p>
+
 
 <h1>New review</h1>
 

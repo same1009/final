@@ -49,6 +49,7 @@
 
 	<%if @recipe.user.id==current_user.id%>
 		<%= link_to 'Edit recipe', edit_recipe_path(@recipe) %>
+		<%= link_to 'Delete Recipe', destroy_recipe_path%>
 		<%=link_to 'Back to my recipes' ,recipes_path %>
 	<%else%>	
 		<%= link_to 'Make  a review',new_review_path if @recipe.reviews.find_by_user_id(current_user.id).nil?%>

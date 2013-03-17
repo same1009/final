@@ -2,10 +2,11 @@
 <%if @recipes.empty?%>
     You have no recipes, please create a recipe below!
 <%else%>
-  <%=will_paginate @recipes %>
+  <%=will_paginate @recipes,:class=> 'apple_pagination'%>
   <%@recipes.each do |recipe|%>
 
-      <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>
+      <p><%= link_to recipe.name.capitalize, recipe_path(:id=>recipe.id)%>
+        <%#=recipe.name.classify%>
         </br>
         Submitted by: <%=recipe.user.email%></br>
         Ingredients: <%=recipe.ingredients%></br>

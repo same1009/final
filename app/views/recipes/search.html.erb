@@ -23,12 +23,12 @@
   <h1>Recipes</h1>
 
   <%if @allrecipes !=nil%>
-   <%=will_paginate @allrecipes%>
+   <%=will_paginate @allrecipes, :class=> 'apple_pagination'%>
 
     <%@allrecipes.each do |recipe|%>
 
 
-      <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>
+      <p><%= link_to recipe.name.capitalize, recipe_path(:id=>recipe.id)%>
         </br>
         Submitted by: <%=recipe.user.email%></br>
         Ingredients: <%=recipe.ingredients%></br>
@@ -77,7 +77,7 @@
         </p>
       <%else%>
         <%if recipe.reviews.average(:rating).to_f >= params[:searchrating].to_f%>
-             <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>
+             <p><%= link_to recipe.name.capitalize, recipe_path(:id=>recipe.id)%>
           </br>
           Submitted by: <%=recipe.user.email%></br>
           Ingredients: <%=recipe.ingredients%></br>

@@ -22,6 +22,8 @@ Final::Application.routes.draw do
   get "recipes/search" =>'recipes#lookingforrecipes', :as => 'search'
 
     resources :recipes
+
+  get 'recipes/:id/delete'=>'recipes#destroy', :as=>'destroy_recipe'
   get 'blah', :controller=>'reviews', :action=>'create2'
   devise_for :users
 
