@@ -1,15 +1,30 @@
 
 <p>review edit.html</p>
-<h1>Recipe</h1>
+
+
+<h2>Recipe</h2>
 <p>
-Name: <%= @review.recipe.name%>
-</br>
-Ingredients: <%= @review.recipe.ingredients%>
-</br>
-Recipe Owner: <%=User.find(@review.recipe.user_id).email%>
-</br>
-Recipe ID: <%=@review.recipe_id%>
+  <b>Recipe Name:</b>
+  <%= @review.recipe.name %></br>
+  <b>User email:</b>
+  <%= @review.recipe.user.email %></br>
+  <b>Ingredients:</b>
+  <%= @review.recipe.ingredients %></br>
+  <b>Directions:</b>
+  <%= @review.recipe.directions %></br>
+  <b>Average Rating:</b>
+  <%= @review.recipe.reviews.average(:rating).to_f%>
 </p>
+<p>
+  <b>Picture:</b></br>
+      <% if @review.recipe.avatar.file? %>
+          <%=image_tag @review.recipe.avatar, :height=>'15%',:width=>'15%'%>
+        <% else %>
+            No Picture available!
+        <% end %>
+</p>
+
+
 <h1>Editing review</h1>
 <%= render 'formupdate' %>
 

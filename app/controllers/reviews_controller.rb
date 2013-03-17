@@ -4,9 +4,7 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   def index
 
-    #@reviews = Review.all
     @myreviews=Review.where('user_id='+current_user.id.to_s)
-    #@myrecipes=User.find(current_user.id).recipes.find(:all, :conditions=>{:owner=>true})
      
     respond_to do |format|
       format.html {render 'index'}
@@ -29,12 +27,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   # GET /reviews/new.json
   def new
-
-    #render 'recipes/_testuser.html.erb', :hah =>'1'
-
     @review=Recipe.find(params[:id]).reviews.new()
-    
-    #@review = Review.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -50,8 +43,6 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    #@review=recipe.reviews.build() 
-      #@review=Recipe.find(params[:recipe_id]).reviews.new()
 
      @review = Review.new(params[:review])
 
@@ -88,11 +79,9 @@ class ReviewsController < ApplicationController
   # PUT /reviews/1.json
   def update
     @review = Review.find(params[:review_id])
-    #render 'recipes/_testuser.html.erb'
 
     respond_to do |format|
       if @review.update_attributes(params[:review])
-        #format.html {render 'recipes/_testuser.html.erb'}
         format.html { redirect_to review_path, notice: 'Review was successfully updated.' }
         format.json { head :no_content }
       else
@@ -124,10 +113,7 @@ class ReviewsController < ApplicationController
 
 
   def destroy_from_review_page
-    @temp='from ths destroy from review method'
     @review = Review.find(params[:review_id])
-    #@id=@review.recipe.id
-    #@review = Review.find(params[:id])
     @review.destroy
 
     respond_to do |format|
@@ -140,9 +126,6 @@ class ReviewsController < ApplicationController
 
     def delete
     @review = Review.find(params[:review_id])
-    @temp='from the delete  method'
-    #@review = Review.find(params[:id])
-    #@review.destroy
 
     respond_to do |format|
        format.html {render 'recipes/_testuser.html.erb'}

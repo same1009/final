@@ -18,12 +18,15 @@
   <%= submit_tag "Search", :name => nil%>
 </form> 
 
-<!-- -->
+<!--Shows all Recipes -->
 <%if params[:searchrecipe].nil? and params[:searchingredients].nil? and params[:searchrating].nil?=%>
-  <h1>My Recipes</h1>
+  <h1>Recipes</h1>
 
-  <%if @myrecipes !=nil%>
-    <%@myrecipes.each do |recipe|%>
+  <%if @allrecipes !=nil%>
+   <%=will_paginate @allrecipes%>
+
+    <%@allrecipes.each do |recipe|%>
+
 
       <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>
         </br>
@@ -41,44 +44,10 @@
     <%end%>
   <%end%>
 
-  <h1>Other User's Recipes</h1>
-
-  <%if @otherusers!=nil%>
-
-    <%@otherusers.each do |user|%>
-
-    <%if user.recipes !=nil%>
-
-      <%user.recipes.each do |recipe|%>
-
-        <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>
-          <%#if recipe.reviews.where('user_id='+current_user.id.to_s).empty? %>
-            <%#=link_to 'Review this recipe', new_review_path(:id=>recipe.id)%>
-          <%#else%>
-            <%#=link_to 'Show my review',review_path(:id=>recipe.id,:review_id=>recipe.reviews.where('user_id='+current_user.id.to_s).first.id)%>
-          <%#end%>
-          </br>
-          Submitted by: <%=recipe.user.email%></br>
-          Ingredients: <%=recipe.ingredients%></br>
-          Directions: <%=recipe.directions%> </br>
-          Average Rating: <%= recipe.reviews.average(:rating).to_f%></br>
-          Picture:</br>
-          <% if recipe.avatar.file? %>
-            <%=image_tag recipe.avatar, :height=>'15%',:width=>'15%'%>
-          <% else %>
-              No Picture available!
-          <% end %></br>
-        </p>
-        </hr>
-      <%end%>
-    <%end%>
-    <%end%>
-  <%end%>
-
-
 <!--Searach results --> 
 <%else%>
-  <h1>Your Search Results for "
+
+<h1>Your Search Results for "
     <%if params[:searchrecipe].nil? and params[:searchrating].nil?%>
       <%=params[:searchingredients]%>
     <%elsif params[:searchingredients].nil? and params[:searchrating].nil?%>
@@ -89,6 +58,8 @@
     <%end%> "
   </h1>
 
+
+  <%=will_paginate @allrecipes %>
   <%@allrecipes.each do |recipe|%>
       <%if params[:searchrating].nil?%>
         <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>
@@ -122,9 +93,11 @@
         <%end%>
       <%end%>
     </hr>
-  <%end%>
+  <%end%> 
 
 <%end%>
+
+<%=link_to "Back to Search",search_path%>
 
 
 

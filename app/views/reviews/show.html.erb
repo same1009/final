@@ -1,17 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<p>This is the review show page </p>
 
+<h2>Recipe</h2>
 <p>
-  <b>User:</b>
-  <%= @review.user_id %>
+  <b>Recipe Name:</b>
+  <%= @review.recipe.name %></br>
+  <b>User email:</b>
+  <%= @review.recipe.user.email %></br>
+  <b>Ingredients:</b>
+  <%= @review.recipe.ingredients %></br>
+  <b>Directions:</b>
+  <%= @review.recipe.directions %></br>
+  <b>Average Rating:</b>
+  <%= @review.recipe.reviews.average(:rating).to_f%>
+</p>
+<p>
+  <b>Picture:</b></br>
+      <% if @review.recipe.avatar.file? %>
+          <%=image_tag @review.recipe.avatar, :height=>'15%',:width=>'15%'%>
+        <% else %>
+            No Picture available!
+        <% end %>
 </p>
 
-<p>
-  <b>Receipe:</b>
-  <%= @review.recipe_id %>
-</p>
 
+
+<h2>Review</h2>
 <p>
   <b>Comments:</b>
   <%= @review.comments %>
@@ -28,4 +42,3 @@
 <%= link_to 'Edit Review', edit_review_path(@review) %> 
 <%= link_to 'Delete Review', destroy_review_path%>
 <%= link_to 'Back',:back%>
-

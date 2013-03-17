@@ -1,12 +1,12 @@
+
 class RecipesController < ApplicationController
+      
   # GET /recipes
   # GET /recipes.json
   before_filter :authenticate_user!
 
   def index
-    @recipes = User.find(current_user.id).recipes
-
-
+     @recipes = User.find(current_user.id).recipes.page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,10 +15,13 @@ class RecipesController < ApplicationController
   end
 
   def lookingforrecipes
-    @myrecipes=User.find(current_user.id).recipes
-
-    @otherusers=User.where("id<>"+current_user.id.to_s)
-
+    #@myrecipes=User.find(current_user.id).recipes
+    @allrecipes=Recipe.order('user_id asc').paginate(:page=>params[:page])
+    #@myrecipes=User.find(current_user.id).recipes.page(params[:page])
+    #@otherusers=User.where("id<>"+current_user.id.to_s)
+    #@temp=Recipe.all-@myrecipes
+    #@otherrecipes=@temp.paginate(:page => params[:page])
+    #@otherrecipes=Recipe.otherrecipes(current_user.id).page(params[:page])
     respond_to do |format|
       format.html {render 'search'}
       format.json { render json: @recipes }
@@ -98,38 +101,27 @@ class RecipesController < ApplicationController
     end
   end
 
-  def test
+  def searchforrecipes
+    if(params[:searchrecipe]!=nil)
+      @allrecipes=Recipe.where("name like ?",'%'+params[:searchrecipe]+'%').page(params[:page])
+    elsif (params[:searchingredients]!=nil)
+      @allrecipes=Recipe.where('ingredients like ?','%'+params[:searchingredients]+'%').page(params[:page])
+    else
+      @allrecipes=Recipe.calaverage(params[:searchrating]).paginate(:page => params[:page])    
+    end
 
+    #render 'search'
+    respond_to do |format|
+      format.html {render 'search'}
+      format.json { render json: @recipes }
+    end
+
+  end
+
+  def test
     @test=params[:test]
     render '_testuser.html.erb'
-
-
   end
-
-  def searchforrecipes
-    #@temp=params[:searchitem]
-    if(params[:searchrecipe]!=nil)
-      @allrecipes=Recipe.where("name like ?",'%'+params[:searchrecipe]+'%')
-    elsif (params[:searchingredients]!=nil)
-      @allrecipes=Recipe.where('ingredients like ?','%'+params[:searchingredients]+'%')
-    else
-      @allrecipes=Recipe.all
-    end
-    #ecipe.where('name like ?', '%bur%')
-    render 'search'
-    # @allrecipes=Recipe.all
-
-    # @otherusers=User.where("id<>"+current_user.id.to_s)
-
-    # respond_to do |format|
-    #   format.html {render 'search'}
-    #   format.json { render json: @recipes }
-    # end
-
-
-  end
-
-
 
 
 end

@@ -2,6 +2,7 @@
 <%if @recipes.empty?%>
     You have no recipes, please create a recipe below!
 <%else%>
+  <%=will_paginate @recipes %>
   <%@recipes.each do |recipe|%>
 
       <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>

@@ -23,6 +23,36 @@ this is test<%#=@test%>
 	<%#=@recipes.ingredients%>
 </div>
 
+<%#=will_paginate @otherrecipes%>
+<!-- 
+  <%if @otherrecipes !=nil%>
+   
+
+    <%@otherrecipes.each do |recipe|%>
+
+      <p><%= link_to recipe.name.classify, recipe_path(:id=>recipe.id)%>
+        </br>
+        Submitted by: <%=recipe.user.email%></br>
+        Ingredients: <%=recipe.ingredients%></br>
+        Directions: <%=recipe.directions%> </br>
+        Picture:</br>
+        <% if recipe.avatar.file? %>
+          <%=image_tag recipe.avatar, :height=>'15%',:width=>'15%'%>
+        <% else %>
+            No Picture available!
+        <% end %></br>
+        Average Rating: <%= recipe.reviews.average(:rating).to_f%></p>
+      </hr>
+    <%end%>
+ <%end%> -->
+
+<%=@all%></br>
+
+ <%@all.each do |recipe|%>
+ 	<%=recipe%>
+	id is <%=recipe[:user_id]%>
+
+<%end%>
 
 
 

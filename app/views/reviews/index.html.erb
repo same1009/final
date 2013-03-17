@@ -1,34 +1,53 @@
 <h1>My reviews of other recipes</h1>
 
-<table>
-  <tr>
-    <th>Owner</th>
-    <th>Me</th>
-    <th>Recipeid</th>
-    <th>recipe name</th>
-    <th>Ingredients</th>
-    <th>Comments</th>
-    <th>Rating</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+
+
+<p>review edit.html</p>
 
 <% @myreviews.each do |review| %>
-  <tr>
-    <td><%= review.recipe.user.email%></td>
-    <td><%= User.find(review.user_id).email%></td>
-    <td><%= review.recipe_id %></td>
-    <td><%= review.recipe.name%></td>
-    <td><%= review.recipe.ingredients%></td>
-    <td><%= review.comments %></td>
-    <td><%= review.rating %></td>
-    <td><%= link_to 'Go to recipe', review.recipe%></td>
-    <td><%= link_to 'Go to review', review_path(:review_id=>review.id, :id=> review.recipe.id)%></td>
-    <td></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
+    <h2>Recipe</h2>
+    <p>
+      <b>Recipe Name:</b>
+      <%= review.recipe.name %></br>
+      <b>User email:</b>
+      <%= review.recipe.user.email %></br>
+      <b>Ingredients:</b>
+      <%= review.recipe.ingredients %></br>
+      <b>Directions:</b>
+      <%= review.recipe.directions %></br>
+      <b>Average Rating:</b>
+      <%= review.recipe.reviews.average(:rating).to_f%>
+    </p>
+    <p>
+      <b>Picture:</b></br>
+          <% if review.recipe.avatar.file? %>
+              <%=image_tag review.recipe.avatar, :height=>'15%',:width=>'15%'%>
+            <% else %>
+                No Picture available!
+            <% end %>
+    </p>
+
+    </br>
+
+    <h2>Review</h2>
+    <p>
+        <b>Comments:</b>
+        <%= review.comments %>
+    </p>
+    <p>
+        <b>Rating:</b>
+        <%review.rating.times do |i|%>
+            <%=image_tag("star_rating.jpeg",:size => "20x20")%>
+        <%end%>
+    </p>
+    <%= link_to 'Show Review', review_path(:id=>review.recipe.id, :review_id=>review.id) %> 
+
+
+<%end%>
+
+
+
+
+
 
