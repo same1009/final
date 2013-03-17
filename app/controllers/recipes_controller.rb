@@ -109,9 +109,11 @@ class RecipesController < ApplicationController
   def searchforrecipes
     #@temp=params[:searchitem]
     if(params[:searchrecipe]!=nil)
-      @allrecipes=Recipe.where('name like?','%'+params[:searchrecipe].to_s+'%')
+      @allrecipes=Recipe.where("name like ?",'%'+params[:searchrecipe]+'%')
+    elsif (params[:searchingredients]!=nil)
+      @allrecipes=Recipe.where('ingredients like ?','%'+params[:searchingredients]+'%')
     else
-      @allrecipes=Recipe.where('ingredients like?','%'+params[:searchingredients].to_s+'%')
+      @allrecipes=Recipe.all
     end
     #ecipe.where('name like ?', '%bur%')
     render 'search'

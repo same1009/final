@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
 
 
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  # Setup accessible (or protected) attributes for your modeler_me
+  attr_accessible :email, :password, :password_confirmation, :rememb, :avatar
   # attr_accessible :title, :body
 
   validates :email, :presence => true
@@ -18,6 +19,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :recipes
   #has_many :reviews, :through=> :recipes, :dependent=>:destroy
   has_many :reviews, :dependent=>:destroy
+
+  has_attached_file :avatar
 
 
 end

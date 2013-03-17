@@ -24,20 +24,11 @@
     <td><%= review.comments %></td>
     <td><%= review.rating %></td>
     <td><%= link_to 'Go to recipe', review.recipe%></td>
-    <td><%= link_to 'Go to review', review_path(:review_id=>review.id, :id=> review.recipe.id)%>
-
-        <%#= link_to 'Edit this Review', edit_review_path(:review_id=>review.id, :id=>review.recipe_id)%></td>
-    <td><%#=link_to 'Delete this review', destroy_review_path(:review_id=>review.id)%>
-        <%#= link_to 'Delete this Review', delete_review_from_review_page_path(:review_id=>review.id), confirm: 'Are you sure you want to delete this review?' %>
-        <%#= link_to 'Destroy review', review, :controller=>:reviews,:method=> :delete, :confirm =>'Are you sure?'  %></td>
-    <!-- <td><%#= link_to 'Show', review %></td> -->
-    <td><%#= link_to 'Edit', edit_review_path(review) %></td>
-    <td><%#= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Go to review', review_path(:review_id=>review.id, :id=> review.recipe.id)%></td>
+    <td></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-
-<%#= link_to 'New Review', new_review_path %>

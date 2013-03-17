@@ -23,11 +23,15 @@
   <b>Average Rating:</b>
   <%= @recipe.reviews.average(:rating).to_f%>
 </p>
-
-
-
-
-
+<p>
+  <b>Picture:</b></br>
+  % if recipe.avatar.file? %>
+          <%=image_tag recipe.avatar, :height=>'15%',:width=>'15%'%>
+        <% else %>
+            No Picture available!
+        <% end %>
+  <%= image_tag @recipe.avatar.url, :height=>'15%', :width=>'15%'%>
+</p>
 <hr>
 
 <h3>Reviews</h3>

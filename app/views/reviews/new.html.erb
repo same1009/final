@@ -11,8 +11,6 @@ Username: <%=User.find(@review.recipe.user_id).email%>
 
 <h1>New review</h1>
 
-<%#=@review%>
-
 <%= render 'form' %>
 
 <%= link_to 'Back', reviews_path %>
