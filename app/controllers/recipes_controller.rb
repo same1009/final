@@ -16,12 +16,13 @@ class RecipesController < ApplicationController
 
   def lookingforrecipes
     #@myrecipes=User.find(current_user.id).recipes
-    @allrecipes=Recipe.order('user_id asc').paginate(:page=>params[:page])
+    
     #@myrecipes=User.find(current_user.id).recipes.page(params[:page])
     #@otherusers=User.where("id<>"+current_user.id.to_s)
     #@temp=Recipe.all-@myrecipes
     #@otherrecipes=@temp.paginate(:page => params[:page])
     #@otherrecipes=Recipe.otherrecipes(current_user.id).page(params[:page])
+    @allrecipes=Recipe.order('user_id asc').paginate(:page=>params[:page])
     respond_to do |format|
       format.html {render 'search'}
       format.json { render json: @recipes }

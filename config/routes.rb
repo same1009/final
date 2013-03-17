@@ -2,12 +2,11 @@ Final::Application.routes.draw do
 
   resources :tests
 
+  get 'recipes/search/query' => 'recipes#searchforrecipes', :as=>'searchforrecipes'
+  get 'recipes/:id/review/:review_id/delete'=>'reviews#destroy',:as=> 'destroy_review'
   get "dashboard/index", :as=>:dashboard
   get "home/index"
 
-  resources :recipes
-  get 'recipes/search/test' => 'recipes#searchforrecipes', :as=>'searchforrecipes'
-  get "recipes/search" =>'recipes#lookingforrecipes', :as => 'search'
 
   get 'reviews' => 'reviews#index', :as=> 'reviews'
   post 'recipes/:id/newreview'=> 'reviews#create'
@@ -15,10 +14,17 @@ Final::Application.routes.draw do
   get 'recipes/:id/review/:review_id/edit/' =>'reviews#edit', :as=>'edit_review'
   get 'recipes/:id/review/:review_id' =>'reviews#show', :as=> 'review'
   put 'recipes/:id/review/:review_id/edit/' =>'reviews#update'
-  get 'recipes/:id/review/:review_id/delete'=>'reviews#destroy',:as=> 'destroy_review'
-  
 
+  #get 'recipes/test'=> 'recipes#test', :as=>'recipes_test'
+
+
+
+  get "recipes/search" =>'recipes#lookingforrecipes', :as => 'search'
+
+    resources :recipes
+  get 'blah', :controller=>'reviews', :action=>'create2'
   devise_for :users
+
 
 
   # The priority is based upon order of creation:

@@ -8,17 +8,17 @@
 </head>
 <body>
 
-	<div style='border: 5px solid red'>
+	<div >
 		<%if flash[:notice]%>
 			<p class='notice'> <%=flash[:notice].html_safe%></p>
 		<%end%>
 	</div >
-	<div style='border: 5px solid green'>
+	<div >
 		<%if flash[:alert]%>
 			<p class='alert'> <%=flash[:alert].html_safe%></p>
 		<%end%>
 	</div>
-	<div style='border: 5px solid blue'>
+	<div >
 		<%if flash[:error]%>
 			<p class='error'> <%=flash[:error].html_safe%></p>
 		<%end%>
